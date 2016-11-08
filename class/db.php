@@ -1,5 +1,5 @@
 <?php
-include_once(str_replace('/class', 'config.php', __DIR__));
+include_once(str_replace('/class', '/config.php', __DIR__));
 class db
 {
     private static $instance = null;
@@ -37,9 +37,8 @@ class db
 	private function exec($query, $parametros=array()){
 		try {
 			$this->query = $this->pdo->prepare($query);
-			if(count($parametros)>0){
-                            $this->bind($parametros);
-                        }
+			if(count($parametros)>0) $this->bind($parametros);
+
 			if(count($this->parametros)>0) {
 				foreach($this->parametros as $param){
 					$trocea = explode("\x7F",$param);
